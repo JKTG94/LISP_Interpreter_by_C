@@ -1,6 +1,8 @@
 #ifndef _TYPE_
 #define _TYPE_
 
+#include <stdbool.h>
+
 /* Token codes */
 
 /* Ÿ���߷��� ���� ���� */
@@ -17,7 +19,7 @@
 /* 1. ��Ģ���� */
 #define ADD_OP 101
 #define SUB_OP 102
-#define MULT_OP 103
+#define MUL_OP 103
 #define DIV_OP 104
 
 /* 2. �⺻�Լ�*/
@@ -64,6 +66,8 @@
 #define SHARP 509
 #define STRING 510
 #define NIL 511
+#define T_LIST 512
+#define BOOLEAN 513
 
 #define true 1
 #define false 0
@@ -73,8 +77,9 @@ typedef struct {
 	int type;
 	int lexed_len;
 	char* t_string;
-	int t_int;
+	int t_int;	//type이 INT의 경우에는 정수값이고 type이 T_LIST일 경우에는 리스트의 크기에 해당함
 	float t_float;
+	bool t_bool;
 	P_OBJ t_list_value, next;
 }T_OBJ;
 

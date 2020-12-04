@@ -44,14 +44,29 @@ void delete_dict_node(c_DICT* dict, char* key) {
 
 void insert_dict_node(c_DICT* dict, char* key, T_OBJ* obj) {
 	if (has_dict_key(dict, key)) {	//이미 존재하는 key일 경우 할당 해제하고 obj교체
-		DICT_NODE* node = dict->head;
-		while (node != NULL)
+		DICT_NODE* pre_node = dict->head;
+		DICT_NODE* cur_node = pre_node;
+		int cnt = 0;
+		while (cur_node != NULL)
 		{
-			if (!strcmp(key, node->key)) {
-				node->value = *obj;
+			if (!strcmp(key, cur_node->key)) {
+				DICT_NODE* new_node = (DICT_NODE*)malloc(sizeof(DICT_NODE));
+				new_node->key = (char*)malloc(sizeof(char)*(strlen(key) + 1));
+				strcpy(new_node->key, key);
+				new_node->value = *obj;
+				new_node->next = cur_node->next;
+				if (cnt == 0) {
+					dict->head = new_node;
+				}
+				else {
+					pre_node->next = new_node;
+				}
+				free_node(cur_node);
 				break;
 			}
-			node = node->next;
+			pre_node = cur_node;
+			cur_node = cur_node->next;
+			cnt++;
 		}
 		return;
 	}
@@ -65,7 +80,7 @@ void insert_dict_node(c_DICT* dict, char* key, T_OBJ* obj) {
 	}
 	else {
 		DICT_NODE* node = dict->head;
-		while (node != NULL)
+		while (node->next != NULL)
 		{
 			node = node->next;
 		}
