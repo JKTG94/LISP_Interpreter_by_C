@@ -12,7 +12,7 @@
 #include "OP~NTH.h"
 
 #include <CONS~SUBST.h>
-
+//머야 씨펄
 /*
 필요한 함수 목록: car , cdr 
 */
@@ -32,11 +32,11 @@ T_OBJ fn_cons(){
     }
     else{
         printf("ERROR");
-        return;
+        return return_false();
     }
     
 	int cnt = 0;
-    while(cnt <2){
+    while(cnt < 2){
         c_LIST* tmp_list = initialize_list();	//리스트를 생성하기 위한 임시 리스트
         while (cur_node->value.type != RIGHT_PAREN) {	//오른쪽 괄호가 나오기 전까지 반복
             T_OBJ tmp;
@@ -65,7 +65,7 @@ T_OBJ fn_cons(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
+                return return_false();
             }
             if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
                 tmp.type = STRING;
@@ -77,8 +77,7 @@ T_OBJ fn_cons(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
-            }
+                return return_false();
             cnt++;
         }
     }
@@ -114,7 +113,7 @@ T_OBJ fn_cons(){
         else{
             printf("ERROR");
             free_list(tmp_list);
-            return;
+            return return_false();
         }
     }
 }
@@ -129,7 +128,7 @@ T_OBJ fn_reverse(){
 	}
 	else {
 		printf("ERROR : NO LEFT_PAREN FOR LIST\n");
-		return;
+		return return_false();
 	}
 
 	int cnt = 0;
@@ -161,7 +160,7 @@ T_OBJ fn_reverse(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
 			tmp.type = STRING;
@@ -173,7 +172,7 @@ T_OBJ fn_reverse(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		cnt++;
 	}
@@ -222,7 +221,7 @@ T_OBJ fn_reverse(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
 //APPEND
@@ -238,7 +237,7 @@ T_OBJ fn_append(){
 	}
 	else {
 		printf("ERROR");
-		return;
+		return return_false();
 	}
     int cnt = 0;
     c_LIST* tmp_list = initialize_list();
@@ -271,7 +270,7 @@ T_OBJ fn_append(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
+                return return_false();
             }
 
             if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
@@ -284,7 +283,7 @@ T_OBJ fn_append(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
+                return return_false();
             }
             cnt++;
             
@@ -326,7 +325,7 @@ T_OBJ fn_append(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
 
@@ -345,7 +344,7 @@ int fn_length(){
 	}
 	else {
 		printf("ERROR");
-		return;
+		return return_false();
 	}
     int cnt = 0;
     c_LIST* tmp_list = initialize_list();
@@ -378,7 +377,7 @@ int fn_length(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
+                return return_false();
             }
 
             if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
@@ -391,7 +390,7 @@ int fn_length(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return;
+                return return_false();
             }
             cnt++;
             
@@ -406,7 +405,7 @@ int fn_length(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
 
@@ -428,7 +427,7 @@ T_OBJ fn_member(){
 	}
 	else {
 		printf("ERROR : NO LEFT_PAREN FOR LIST\n");
-		return;
+		return return_false();
 	}
     //찾아야하는 노드를 target으로 대입.
     char target = cur_node->value.t_string;
@@ -441,7 +440,7 @@ T_OBJ fn_member(){
     }
     if(cur_node->next == NULL){
         printf("ERROR");
-        return;
+        return return_false();
     }
 
 
@@ -474,7 +473,7 @@ T_OBJ fn_member(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
 			tmp.type = STRING;
@@ -486,7 +485,7 @@ T_OBJ fn_member(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		cnt++;
 	}
@@ -524,7 +523,7 @@ T_OBJ fn_member(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
 //ASSOC
@@ -542,7 +541,7 @@ T_OBJ fn_assoc(){
 	}
 	else {
 		printf("ERROR : NO LEFT_PAREN FOR LIST\n");
-		return;
+		return return_false();
 	}
 
     char target = cur_node->value.t_string;
@@ -555,7 +554,7 @@ T_OBJ fn_assoc(){
     }
     if(cur_node->next == NULL){
         printf("ERROR");
-        return;
+        return return_false();
     }
 
 
@@ -588,7 +587,7 @@ T_OBJ fn_assoc(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
 			tmp.type = STRING;
@@ -600,7 +599,7 @@ T_OBJ fn_assoc(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		cnt++;
 	}
@@ -641,7 +640,7 @@ T_OBJ fn_assoc(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 
 }
@@ -665,7 +664,7 @@ T_OBJ remove(){
 	}
 	else {
 		printf("ERROR : NO LEFT_PAREN FOR LIST\n");
-		return;
+		return return_false();
 	}
     char target = cur_node->value.t_string;
     cur_node = cur_node->next;
@@ -699,7 +698,7 @@ T_OBJ remove(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
 			tmp.type = STRING;
@@ -711,7 +710,7 @@ T_OBJ remove(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		cnt++;
 	}
@@ -751,7 +750,7 @@ T_OBJ remove(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
 //SUBST
@@ -768,7 +767,7 @@ T_OBJ fn_subst(){
 	}
 	else {
 		printf("ERROR : NO LEFT_PAREN FOR LIST\n");
-		return;
+		return return_false();
 	}
 
     if(cur_node->value.type == SQUOTE){
@@ -776,7 +775,7 @@ T_OBJ fn_subst(){
     }
     else{
         printf("ERROR");
-        return;
+        return return_false();
     }
 
     //대체할 단어
@@ -788,7 +787,7 @@ T_OBJ fn_subst(){
     }
     else{
         printf("ERROR");
-        return;
+        return return_false();
     } 
 
     //대체될 단어
@@ -824,7 +823,7 @@ T_OBJ fn_subst(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
 			tmp.type = STRING;
@@ -836,7 +835,7 @@ T_OBJ fn_subst(){
 		else {
 			printf("ERROR : TYPE ERROR FOR LIST\n");
 			free_list(tmp_list);
-			return;
+			return return_false();
 		}
 		cnt++;
 	}
@@ -881,6 +880,6 @@ T_OBJ fn_subst(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return;
+		return return_false();
 	}
 }
