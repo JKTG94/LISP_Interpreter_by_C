@@ -11,7 +11,7 @@
 #include "util.h"
 #include "OP~NTH.h"
 
-#include <CONS~SUBST.h>
+#include "CONS~SUBST.h"
 //머야 씨펄
 /*
 필요한 함수 목록: car , cdr 
@@ -86,7 +86,6 @@ T_OBJ fn_cons(){
 
     T_OBJ head;
     T_OBJ* pre_obj = &head;
-    int cnt = 0;
     head.type = T_LIST;
     head.t_int = cnt;
     head.next = head.t_list_value = NULL;
@@ -98,7 +97,7 @@ T_OBJ fn_cons(){
             head.t_list_value = &(tmp_node->value);
         }
         else{
-            T_OBJ* tmp; malloc(sizeof(T_OBJ));
+            T_OBJ* tmp = malloc(sizeof(T_OBJ));
             tmp->type = T_LIST;
             tmp->t_int = cnt;
             tmp->t_list_value = &(tmp_node->value);
@@ -346,12 +345,11 @@ int fn_length(){
 	}
 	else {
 		printf("ERROR");
-		return return_false();
+		return;
 	}
     int cnt = 0;
     c_LIST* tmp_list = initialize_list();
 
-    while(/*조건이 있어서*/ ){
         while(cur_node->value.type == RIGHT_PAREN){
             T_OBJ tmp;
             if(cur_node->value.type == SQUOTE){
@@ -379,7 +377,7 @@ int fn_length(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return return_false();
+                return;
             }
 
             if (tmp.type == IDENT) {	//IDENT의 경우 STRING으로 취급해서 처리
@@ -392,12 +390,10 @@ int fn_length(){
             else {
                 printf("ERROR : TYPE ERROR FOR LIST\n");
                 free_list(tmp_list);
-                return return_false();
+                return;
             }
             cnt++;
-            
-        }
-    }
+    	}
 	if (cur_node->value.type == RIGHT_PAREN) {
 		right_paren_Count++;
 		cur_node = cur_node->next;
@@ -407,7 +403,7 @@ int fn_length(){
 	else {
 		printf("ERROR : NO RIGHT_PAREN FOR LIST\n");
 		free_list(tmp_list);
-		return return_false();
+		return;
 	}
 }
 
@@ -658,7 +654,7 @@ Ex)
 > (REMOVE D MYLIST)
 (A B C E F) ;  D가 중복되어 여러개가 있어도 모두 삭제한다.
 */
-T_OBJ remove(){
+T_OBJ fn_remove(){
 	if (cur_node->value.type == LEFT_PAREN) {	//왼쪽 괄호 확인
 		left_paren_Count++;
 		cur_node = cur_node->next;

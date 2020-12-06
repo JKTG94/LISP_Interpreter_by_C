@@ -7,12 +7,13 @@
 #include <string.h>
 #include "c_dictionary.h"
 
-P_OBJ cons(P_OBJ *_car, P_OBJ *_cdr);
-P_OBJ reverse(P_OBJ *p);
-int length(P_OBJ *list);
-P_OBJ member(void* target, P_OBJ* list);
-P_OBJ assoc(void* target, P_OBJ* list);
-P_OBJ remove(void* target, P_OBJ* list);
-P_OBJ subst(void* a_target, void* b_target, P_OBJ list);
+T_OBJ fn_cons();
+T_OBJ fn_reverse();
+int fn_length();
+T_OBJ fn_member();
+T_OBJ fn_remove();
+T_OBJ fn_assoc();
+T_OBJ fn_append();
+T_OBJ fn_subst();
 
 #endif
