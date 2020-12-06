@@ -113,7 +113,7 @@ int main()
 		}
 		*/
 
-		ifFlag = 0;
+		//ifFlag = 0;
 		left_paren_Count = 0;
 		right_paren_Count = 0;
 

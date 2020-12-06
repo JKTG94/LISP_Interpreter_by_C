@@ -190,7 +190,7 @@ T_OBJ fn_reverse(){
 	LIST_NODE* tmp_node = tmp_list->head;
     //tmp_node의 값을 reverse해준다. 다음은 reverse을 위한 임시 노드
     LIST_NODE* a = NULL;
-    LIST_NODE* b;
+	LIST_NODE* b = 1234567;
 
     while(tmp_node != NULL){
         b = tmp_node->next;
