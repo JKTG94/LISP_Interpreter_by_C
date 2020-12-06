@@ -36,8 +36,9 @@ T_OBJ fn_cons(){
     }
     
 	int cnt = 0;
+	c_LIST* tmp_list = initialize_list();
     while(cnt < 2){
-        c_LIST* tmp_list = initialize_list();	//리스트를 생성하기 위한 임시 리스트
+        	//리스트를 생성하기 위한 임시 리스트
         while (cur_node->value.type != RIGHT_PAREN) {	//오른쪽 괄호가 나오기 전까지 반복
             T_OBJ tmp;
             if (cur_node->value.type == SQUOTE) {
@@ -79,7 +80,8 @@ T_OBJ fn_cons(){
                 free_list(tmp_list);
                 return return_false();
             cnt++;
-        }
+        	}
+		}
     }
 
     T_OBJ head;
@@ -242,7 +244,7 @@ T_OBJ fn_append(){
     int cnt = 0;
     c_LIST* tmp_list = initialize_list();
 
-    while(/*조건이 있어서*/ ){
+    while(cnt < 2){
         while(cur_node->value.type == RIGHT_PAREN){
             T_OBJ tmp;
             if(cur_node->value.type == SQUOTE){
